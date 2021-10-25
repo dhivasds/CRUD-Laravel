@@ -39,7 +39,6 @@ Route::get('/blog', [PostController::class, 'index']);
 
 // Halaman Single Post
 // {} = while card, untuk mengambil apapun dari " / "
-// function $slug untuk mendapatkan "slug" dan memakainya di view post
-Route::get('posts/{slug}', [PostController::class, 'show']);
-
-
+// {post} mengambil ke PostController, di binding
+// kalau hanya ditulis {post} otomatis akan terkirim id, maka tambahkan :slug
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
