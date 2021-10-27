@@ -18,4 +18,9 @@ class Post extends Model
 
     // * Field yang tidak boleh diisi, sisanya boleh.
     protected $guarded = ['id'];
+
+    public function category(){
+        // Model Post sudah berelasi dengan Category (menghubungkan)
+        return $this->belongsTo(Category::class);
+    }
 }
