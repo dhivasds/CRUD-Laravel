@@ -19,8 +19,14 @@ class Post extends Model
     // * Field yang tidak boleh diisi, sisanya boleh.
     protected $guarded = ['id'];
 
+    // Relationship DB
+
     public function category(){
         // Model Post sudah berelasi dengan Category (menghubungkan)
         return $this->belongsTo(Category::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
