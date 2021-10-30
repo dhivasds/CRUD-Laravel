@@ -26,7 +26,8 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    // di model ini kita panggil function user , kalau function kita ganti ganti "author" maka akan error. jadi pada saat di halaman posts.blade.php manggil user, maka dia akan memanggil method function user(). nah kalo kita ganti jd 'author' ini akan error, laravelnya akan mengecek ada tidak di tabel 'post' field yang namanya 'author_id' sebagai Foreign Keynya, nah kan tidak ada. yang ada jg 'user_id', nah kalo kita ingin mengganti menjadi author maka kita tambahkan '(User::class, 'user_id')' jd kita mau mengganti 'user_id' aliasnya / nama lainnya, menjadi autohr
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

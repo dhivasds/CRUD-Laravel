@@ -11,7 +11,10 @@ class PostController extends Controller
     {
         return view('posts', [
         "title" => "Blog",
-        "posts" => Post::all()
+        // "posts" => Post::all()
+        
+        // Mengurutkan Post dari yang paling terbaru, kalo di Post:all() diurutkan berdasarkan id
+        "posts" => Post::latest()->get()
       ]);
     }
 

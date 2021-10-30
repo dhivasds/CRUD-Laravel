@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::get('/blog', [PostController::class, 'index']);
 // kalau hanya ditulis {post} otomatis akan terkirim id, maka tambahkan :slug
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
+// Lebih baik Data dipindahkan ke Controller seperti "post:slug"
 
 Route::get('/categories', function(){
     return view('categories', [
@@ -58,5 +60,13 @@ Route::get('categories/{category:slug}', function(Category $category){
         'title' => $category->name,
         'posts' => $category->posts,
         'category' => $category->name
+    ]);
+});
+
+// bahkan kita bisa meminjam view punyanya "posts" di User, kalo mau bkin view baru juga boleh
+Route::get('authors/{author:username}', function(User $author){
+    return view('posts', [
+        'title' => 'User Posts',
+        'posts' => $author->posts,
     ]);
 });
