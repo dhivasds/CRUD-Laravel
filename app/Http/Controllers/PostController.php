@@ -10,11 +10,11 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-        "title" => "Blog",
+        "title" => "All Posts",
         // "posts" => Post::all()
-        
-        // Mengurutkan Post dari yang paling terbaru, kalo di Post:all() diurutkan berdasarkan id
-        "posts" => Post::latest()->get()
+
+        // menambahkan "with()" tidak menggunakan routes model binding
+        "posts" => Post::with(['author', 'category'])->latest()->get()
       ]);
     }
 
