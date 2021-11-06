@@ -11,10 +11,11 @@ class PostController extends Controller
     {
         return view('posts', [
         "title" => "All Posts",
+        "active" => 'posts',
         // "posts" => Post::all()
 
-        // menambahkan "with()" tidak menggunakan routes model binding
-        "posts" => Post::with(['author', 'category'])->latest()->get()
+        // menambahkan "$with" di Model "Post.php", sehingga tidak perlu memanggilnya lagi
+        "posts" => Post::latest()->get()
       ]);
     }
 
@@ -22,6 +23,8 @@ class PostController extends Controller
     {
         return view('post', [
         "title" => "Single Post",
+        "active" => 'posts',
+
         "post" => $post
     ]);
     }

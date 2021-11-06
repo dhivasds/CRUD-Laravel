@@ -18,6 +18,8 @@ class Post extends Model
 
     // * Field yang tidak boleh diisi, sisanya boleh.
     protected $guarded = ['id'];
+    // ketika setiap pemanggilan dari query Postnya ['author','category']nya ikut terbawa
+    protected $with = ['author','category'];
 
     // Relationship DB
 
