@@ -27,7 +27,7 @@ class PostController extends Controller
         "active" => 'posts',
 
         // menambahkan "$with" di Model "Post.php", sehingga tidak perlu memanggilnya lagi
-        "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->get()
+        "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
       ]);
     }
 

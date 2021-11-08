@@ -34,7 +34,7 @@ ada postingannya--}}
         <p>
             <small>By. <a href="/posts?author={{ $posts[0]->author->username }}" class="text-decoration-none">{{
                     $posts[0]->author->name }}</a>
-                in <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none">{{
+                in <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none">{{
                     $posts[0]->category->name }}
                 </a>{{ $posts[0]->created_at->diffForhumans() }}
             </small>
@@ -76,5 +76,9 @@ ada postingannya--}}
 @else
 <p class="text-center fs-4">No post found.</p>
 @endif
+
+<div class="d-flex justify-content-end">
+    {{ $posts->links() }}
+</div>
 
 @endsection
