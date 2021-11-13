@@ -1,12 +1,15 @@
 <?php
 
 
-use Illuminate\Support\Facades\Route;
-// connect to models
 use App\Models\Post;
-use App\Http\Controllers\PostController;
+
+// connect to models
 use App\Models\Category;
-use App\Models\User;
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +53,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 // Lebih baik Data dipindahkan ke Controller seperti "post:slug"
 
-Route::get('/categories', function(){
+Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
         'active' => 'categories',
@@ -60,22 +63,8 @@ Route::get('/categories', function(){
     ]);
 });
 
-Route::get('categories/{category:slug}', function(Category $category){
-    return view('posts', [
-        'title' => "Post by Category: $category->name",
-        'active' => 'categories',
 
-        'posts' => $category->posts->load('category', 'author'),
 
-    ]);
-});
+Route::get('/login', [LoginController::class, 'index']);
 
-// bahkan kita bisa meminjam view punyanya "posts" di User, kalo mau bkin view baru juga boleh
-// menambahkan "load" menggunakan Lazy Eager loading
-Route::get('authors/{author:username}', function(User $author){
-    return view('posts', [
-        'title' => "Post by Author: $author->name",
-        'active' => 'posts',
-        'posts' => $author->posts->load('category', 'author'),
-    ]);
-});
+Route::get('/register', [RegisterController::class, 'index']);
