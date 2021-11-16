@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,11 +18,8 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,7 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 }
