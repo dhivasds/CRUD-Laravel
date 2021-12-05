@@ -18,8 +18,6 @@
             <article class="my-3 fs-5">
                 <p>{!! $post->body !!}</p>
             </article>
-
-            <a href="/posts" class="text-decoration-none">Back to Post</a>
         </div>
     </div>
 </div>
